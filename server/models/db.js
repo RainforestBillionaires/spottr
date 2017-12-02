@@ -1,10 +1,10 @@
 module.exports = function (mongoose) {
     var userSchema = new mongoose.Schema({
         email: String,
-        name: String,
+        fName: String,
+        lName: String,
         phoneNumber: String,
         address: String,
-        salt: String,
         password: String
     });
 
