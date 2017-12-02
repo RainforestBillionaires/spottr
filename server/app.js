@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var models = require('./models/db')(mongoose);
 
+require('./config/authentication').initPassport(models);
+
 var db = mongoose.connection;
 var app = express();
 
