@@ -8,7 +8,7 @@ module.exports = function (mongoose) {
         password: String
     });
 
-    return {
-        User: mongoose.model('User', userSchema)
-    }
+  return {
+    User: mongoose.model('User', userSchema)
+  }
 }
