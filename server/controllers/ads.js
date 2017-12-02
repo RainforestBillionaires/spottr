@@ -29,7 +29,15 @@ module.exports = function (app, db) {
   });
 
   app.delete('/api/ad/:adId', function (req, res) {
-
+    console.log(`(DELETE) Deleting ad ${req.params.adId}`);
+    db.Ad.remove({ _id: req.params.adId }, function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Could not delete ad.');
+      } else {
+        res.status(200).end()
+      }
+    })
   });
 
   app.get('/api/ad/:adId', function (req, res) {
