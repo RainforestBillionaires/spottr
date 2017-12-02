@@ -1,12 +1,12 @@
 module.exports = function (mongoose) {
-  var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    phoneNumber: String,
-    address: String,
-    salt: String,
-    password: String
-  });
+    var userSchema = new mongoose.Schema({
+        email: String,
+        fName: String,
+        lName: String,
+        phoneNumber: String,
+        address: String,
+        password: String
+    });
 
   var adSchema = new mongoose.Schema({
     pictures: String,
