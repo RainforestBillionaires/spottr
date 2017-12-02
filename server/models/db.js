@@ -8,7 +8,18 @@ module.exports = function (mongoose) {
     password: String
   });
 
+  var adSchema = new mongoose.Schema({
+    pictures: String,
+    title: String,
+    description: String,
+    // location: null, TODO: fill this in
+    value: Number,
+    spotting: Boolean,
+    userEmail: String
+  })
+
   return {
-    User: mongoose.model('User', userSchema)
+    User: mongoose.model('User', userSchema),
+    Ad: mongoose.model('Ad', adSchema)
   }
 }
