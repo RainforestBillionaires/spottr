@@ -54,7 +54,40 @@ module.exports = function (app, db) {
   });
 
   app.put('/api/user', function (req, res) {
-
+    console.log("PUT - User attempting to update information: " + req.body.email)
+    passport.authenticate('local', function (err, user, info){
+      if (err){
+        res.status(404).json(err);
+        return;
+      }
+      // If a user is found
+      if(user){
+        console.log("User " + req.body.email + " was authenticated for update")
+        bcrypt.hash(req.body.newPassword, constants.SALT_ROUNDS, function(err, hash) {
+          db.User.update({ email: req.body.email },
+            {
+              $set: {
+                firstName: req.body.fName,
+                lastName: req.body.lName,
+                phoneNumber: req.body.phoneNum,
+                address: req.body.address,
+                password: hash
+              }
+            }, function(err, userUpdated) {
+              if (err) {
+                res.status(500).send('The user could not be saved.');
+              } else {
+                res.status(200).send("User information was successfully updated.");
+              }
+            });
+        });
+      }
+      // If user is not found
+      else {
+        console.log("User " + req.body.email + " was not authenticated for update")
+        res.status(401).json(info);
+      }
+    })(req,res);
   });
 
   app.delete('/api/user', function (req, res) {
