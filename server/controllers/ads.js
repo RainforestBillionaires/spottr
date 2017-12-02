@@ -1,4 +1,4 @@
-module.exports = function (app) {
+module.exports = function (app, db) {
   app.post('/api/ad', function (req, res) {
 
   });

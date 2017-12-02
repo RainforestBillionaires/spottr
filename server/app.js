@@ -14,8 +14,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var controllers = require ('./controllers')(app);
-
 app.get('/', function(req, res) {
     res.status(200).send('Hello World');
 });
@@ -36,3 +34,5 @@ db.once('open', function () {
 });
 
 mongoose.connect('mongodb://localhost:27017/spottr');
+
+var controllers = require ('./controllers')(app, models);
