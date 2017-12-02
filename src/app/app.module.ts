@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
 import { AdListItemComponent } from './ad-list-item/ad-list-item.component';
 import { AdListViewComponent } from './ad-list-view/ad-list-view.component';
+import { LoginScreenComponent } from './components/login-screen/login-screen.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -13,7 +16,10 @@ import { AdListViewComponent } from './ad-list-view/ad-list-view.component';
     AppComponent,
     AdDetailsComponent,
     AdListItemComponent,
-    AdListViewComponent
+    AdListViewComponent,
+    LoginScreenComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule
