@@ -1,6 +1,9 @@
 module.exports = function (mongoose) {
     var userSchema = new mongoose.Schema({
-        email: String,
+        email: {
+          type: String,
+          unique: true
+        },
         fName: String,
         lName: String,
         phoneNumber: String,

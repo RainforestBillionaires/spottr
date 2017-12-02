@@ -9,6 +9,8 @@ import { AdListViewComponent } from './components/ad-list-view/ad-list-view.comp
 import { LoginScreenComponent } from './components/login-screen/login-screen.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { FooterComponent } from './components/footer/footer.component';
     AdListViewComponent,
     LoginScreenComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
