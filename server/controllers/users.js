@@ -3,7 +3,7 @@ var constants = require('./constants');
 
 module.exports = function (app, db) {
   app.post('/api/createUser', function (req, res) {
-    console.log("(POST) Creating user: " + req.body.email)
+    console.log("POST - Creating user: " + req.body.email)
     db.findOne({ email: req.body.email }, function(err, user){
       if (err)
         return console.log(err);
