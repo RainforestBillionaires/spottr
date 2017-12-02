@@ -91,6 +91,29 @@ module.exports = function (app, db) {
   });
 
   app.delete('/api/user', function (req, res) {
-
+    console.log(`(DELETE) Attempting to delete user ${req.body.email}`);
+    passport.authenticate('local', function (err, user, info){
+      if (err){
+        res.status(404).json(err);
+        return;
+      }
+      // If a user is found
+      if(user){
+        console.log("User " + req.body.email + " was authenticated for delete")
+        db.User.remove({ email: req.body.email }, function (err) {
+          if (err) {
+            console.log(err);
+            res.status(500).send('Could not delete user.');
+          } else {
+            res.status(200).send("The user was successfully deleted.");
+          }
+        });
+      }
+      // If user is not found
+      else {
+        console.log("User " + req.body.email + " was not authenticated for update")
+        res.status(401).json(info);
+      }
+    })(req,res);
   });
 }
