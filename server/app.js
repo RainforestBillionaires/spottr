@@ -35,6 +35,6 @@ db.once('open', function () {
   // test.save();
 });
 
-mongoose.connect('mongodb://localhost:27017/spottr');
+mongoose.connect('mongodb://nabillionaire:nabillionaire@ds127436.mlab.com:27436/spottr');
 
 var controllers = require ('./controllers')(app, models);
