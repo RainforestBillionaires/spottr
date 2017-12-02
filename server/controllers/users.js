@@ -1,10 +1,11 @@
 var bcrypt = require('bcrypt');
 var constants = require('./constants');
+var passport = require ('passport');
 
 module.exports = function (app, db) {
   app.post('/api/createUser', function (req, res) {
     console.log("POST - Creating user: " + req.body.email)
-    db.findOne({ email: req.body.email }, function(err, user){
+    db.User.findOne({ email: req.body.email }, function(err, user){
       if (err)
         return console.log(err);
       if (user == undefined) {
@@ -17,7 +18,13 @@ module.exports = function (app, db) {
               address: req.body.address,
               password: hash
           });
-          query.save();
+          query.save(function (err, createdUser) {
+            if (err) {
+              res.status(500).send('The user could not be saved.');
+            } else {
+              res.send(createdUser._id);
+            }
+          });
         });
       }
       else {
@@ -27,7 +34,23 @@ module.exports = function (app, db) {
   });
 
   app.post('/api/signIn', function (req, res) {
-
+    console.log("POST - User attempting to sign in: " + req.body.email)
+    passport.authenticate('local', function (err, user, info){
+      if (err){
+        res.status(404).json(err);
+        return;
+      }
+      // If a user is found
+      if(user){
+        console.log("User " + req.body.email + " was authenticated")
+        res.status(200).send("Login successful.");
+      }
+      // If user is not found
+      else {
+        console.log("User " + req.body.email + " was not authenticated")
+        res.status(401).json(info);
+      }
+    })(req,res);
   });
 
   app.put('/api/user', function (req, res) {

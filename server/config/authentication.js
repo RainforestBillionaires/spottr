@@ -7,7 +7,7 @@ module.exports.initPassport = function(db) {
       usernameField: 'email'
     },
     function(email, password, done) {
-      db.findOne({ email: req.body.email }, function(err, user){
+      db.User.findOne({ email: email }, function(err, user){
         if (err)
           return console.log(err);
         if (user == undefined) {
