@@ -15,22 +15,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', function(req, res) {
-    res.status(200).send('Hello World');
+  res.status(200).send('Hello World');
 });
 
 db.once('open', function () {
-    server.listen(3000, function() {
-        console.log('HTTP on port 3000');
-    });
-    // var test = new models.User({
-    //     email: 'test@test.com',
-    //     name: 'test name',
-    //     phoneNumber: '123456',
-    //     address: '123 test road',
-    //     salt: 'abc',
-    //     password: 'mysecurepw'
-    // });
-    // test.save();
+  server.listen(3000, function() {
+    console.log('HTTP on port 3000');
+  });
+  // var test = new models.User({
+  //     email: 'test@test.com',
+  //     name: 'test name',
+  //     phoneNumber: '123456',
+  //     address: '123 test road',
+  //     salt: 'abc',
+  //     password: 'mysecurepw'
+  // });
+  // test.save();
 });
 
 mongoose.connect('mongodb://localhost:27017/spottr');
