@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthenticateService {
 
-  user: User
+  user: User;
 
   constructor( private http: Http ) { }
 

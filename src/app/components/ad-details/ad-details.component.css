@@ -1,0 +1,16 @@
+.carousel_pic {
+    max-width: 30em;
+    max-height: 25em;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+.bodywrapper {
+    padding: 0;
+}
+
+.adInfo {
+    display: inline-block;
+    max-width: 50em;
+}

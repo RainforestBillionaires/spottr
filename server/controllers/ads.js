@@ -1,6 +1,6 @@
 module.exports = function (app, db) {
   app.post('/api/ad', function (req, res) {
-    console.log(`(POST) Creating ad ${req.body.title}`);
+    console.log(`POST - Creating ad ${req.body.title}`);
     db.User.findOne({ 'email': req.body.email }, function (err, user) {
       if (err) {
         console.log(err);
@@ -29,23 +29,43 @@ module.exports = function (app, db) {
   });
 
   app.delete('/api/ad/:adId', function (req, res) {
-    console.log(`(DELETE) Deleting ad ${req.params.adId}`);
+    console.log(`DELETE - Deleting ad ${req.params.adId}`);
     db.Ad.remove({ _id: req.params.adId }, function (err) {
       if (err) {
         console.log(err);
         res.status(500).send('Could not delete ad.');
       } else {
-        res.status(200).end()
+        res.end()
       }
     })
   });
 
   app.get('/api/ad/:adId', function (req, res) {
-
+    console.log(`GET - Getting ad ${req.params.adId}`);
+    db.Ad.findOne({ _id: req.params.adId }, function (err, ad) {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else if (ad === null) {
+        res.status(404).send('This ad does not exist.');
+      } else {
+        res.json(ad);
+      }
+    });
   });
 
   app.put('/api/ad/:adId', function (req, res) {
-
+    console.log(`PUT - Updating ad ${req.params.adId}`);
+    db.Ad.findOneAndUpdate({ _id: req.params.adId }, req.body, function (err, ad) {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else if (ad === null) {
+        res.status(404).send('This ad does not exist.');
+      } else {
+        res.send(ad._id);
+      }
+    });
   });
 
   app.get('/api/ads/:searchText', function (req, res) {
