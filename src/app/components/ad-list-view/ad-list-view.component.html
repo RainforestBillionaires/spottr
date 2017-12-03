@@ -1,5 +1,3 @@
-
-<div *ngFor="let item of currentAds" class="row">
-  <app-ad-list-item></app-ad-list-item>
+<div *ngFor="let ad of currentAds">
+  <app-ad-list-item [ad]="ad"></app-ad-list-item>
 </div>
-
