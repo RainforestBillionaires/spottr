@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Advertisement } from '../../models/advertisement';
+import { AdsService } from '../../services/ads.service';
 
 @Component({
   selector: 'app-ad-list-view',
@@ -8,52 +9,17 @@ import { Advertisement } from '../../models/advertisement';
 })
 export class AdListViewComponent implements OnInit {
 
-  currentAds: Array<Advertisement> = [
-    {
-      pictures: ["/assets/images/lawnmower.jpg", "/assets/images/lawnmower2.jpg"],
-      title: "Lawnmower for rent",
-      description: "Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.",
-      location: "3620 rue Lorne-Crescent, Montreal Quebec, Canada",
-      value: 70,
-      userId: "nabil.chowdhury@outlook.com"
-    },
-    {
-      pictures: ["/assets/images/lawnmower.jpg", "/assets/images/lawnmower2.jpg"],
-      title: "Lawnmower for rent",
-      description: "Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.",
-      location: "3620 rue Lorne-Crescent, Montreal Quebec, Canada",
-      value: 70,
-      userId: "nabil.chowdhury@outlook.com"
-    },
-    {
-      pictures: ["/assets/images/lawnmower.jpg", "/assets/images/lawnmower2.jpg"],
-      title: "Lawnmower for rent",
-      description: "Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.",
-      location: "3620 rue Lorne-Crescent, Montreal Quebec, Canada",
-      value: 70,
-      userId: "nabil.chowdhury@outlook.com"
-    },
-    {
-      pictures: ["/assets/images/lawnmower.jpg", "/assets/images/lawnmower2.jpg"],
-      title: "Lawnmower for rent",
-      description: "Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.",
-      location: "3620 rue Lorne-Crescent, Montreal Quebec, Canada",
-      value: 70,
-      userId: "nabil.chowdhury@outlook.com"
-    },
-    {
-      pictures: ["/assets/images/lawnmower.jpg", "/assets/images/lawnmower2.jpg"],
-      title: "Lawnmower for rent",
-      description: "Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.Pristine lawnmower looking to be borrowed. DM me.",
-      location: "3620 rue Lorne-Crescent, Montreal Quebec, Canada",
-      value: 70,
-      userId: "nabil.chowdhury@outlook.com"
-    }
-  ];
+  currentAds: Array<Advertisement>;
 
-  constructor() { }
+  constructor(private adsService:AdsService) { }
+
+  getAllAds() {
+    this.adsService.getAllAds()
+      .subscribe(currentAds => this.currentAds = currentAds);
+  }
 
   ngOnInit() {
+    this.getAllAds();
   }
 
 }

@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticateService } from './services/authenticate.service';
+import { AdsService } from './services/ads.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { AuthenticateService } from './services/authenticate.service';
     HttpClientModule,
     HttpModule
   ],
-  providers: [AuthenticateService],
+  providers: [AuthenticateService, AdsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
