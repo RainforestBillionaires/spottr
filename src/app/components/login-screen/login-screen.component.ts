@@ -8,6 +8,8 @@ import { AuthenticateService } from '../../services/authenticate.service';
 })
 export class LoginScreenComponent implements OnInit {
 
+  showLogin: boolean;
+
   authenticateService: AuthenticateService
 
   constructor(authenticateService: AuthenticateService) {
@@ -18,7 +20,16 @@ export class LoginScreenComponent implements OnInit {
   }
 
   login(email: HTMLInputElement, password: HTMLInputElement): void {
-    this.authenticateService.signin(email.value, password.value).subscribe();
+    this.authenticateService.signIn(email.value, password.value)
+      .subscribe());
   }
 
+
+  setSignUp() {
+    this.showLogin = false;
+  }
+
+  setLogIn() {
+    this.showLogin = true;
+  }
 }

@@ -5,16 +5,17 @@
         <img alt="Brand" src="../../../assets/SpottrLogo.png" height="45">
       </a>
     </div>
-    <div *ngIf="!loggedIn">
+    <div [hidden]="loggedIn">
       <a href="login" type="button" class="btn btn-default navbar-right" style="margin:10px">Login</a>
       <a href="signup" type="button" class="btn btn-default navbar-right" style="margin:10px">SignUp</a>
     </div>
-    <div *ngIf="loggedIn">
-      <form class="navbar-form navbar-right" role="search">
+    <div [hidden]="!loggedIn">
+      <form class="navbar-form navbar-center" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
+          <button type="submit" class="btn btn-default">Browse</button>
         </div>
-        <button type="submit" class="btn btn-default">Browse</button>
+        <button type="logout" class="btn btn-default navbar-right" (click)="logOut()">Log Out</button>
       </form>
     </div>
   </div>
