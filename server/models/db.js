@@ -22,16 +22,16 @@ module.exports = function (mongoose) {
   });
 
   var transactionSchema = new mongoose.Schema({
-    loaner: String,
-    recepient: String,
-    title: String,
-    description: String,
-    value: Number,
-    adId: mongoose.Schema.Types.ObjectId
+    buyer: String,
+    seller: String,
+    adId: String,
+    buyerSatisfied: Boolean,
+    sellerSatisfied: Boolean
   });
 
   return {
     User: mongoose.model('User', userSchema),
-    Ad: mongoose.model('Ad', adSchema)
+    Ad: mongoose.model('Ad', adSchema),
+    Transaction: mongoose.model('Transaction', transactionSchema)
   }
 }
