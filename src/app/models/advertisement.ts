@@ -3,6 +3,5 @@ export class Advertisement {
     title: string;
     description: string;
     value: number;
-    spotting: Boolean;
     userEmail: string;
 }
