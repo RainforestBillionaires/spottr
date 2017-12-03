@@ -13,7 +13,7 @@ module.exports = function (app, db) {
   });
 
   // start payment process
-  app.post('/api/transaction/:adId' , (req, res) => {
+  app.get('/api/transaction/:adId' , (req, res) =>  {//TODO change back for prod
   	// create payment object
     db.Ad.findOne({ _id: req.params.adId }, function (err, ad) {
       if (err) {
