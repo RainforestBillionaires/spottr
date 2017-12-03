@@ -15,6 +15,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticateService } from './services/authenticate.service';
 import { AdsService } from './services/ads.service';
+import { AddAdvertisementComponent } from './components/add-advertisement/add-advertisement.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AdsService } from './services/ads.service';
     LoginScreenComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    AddAdvertisementComponent
   ],
   imports: [
     BrowserModule,
