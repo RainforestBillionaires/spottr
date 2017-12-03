@@ -13,9 +13,9 @@ module.exports = function (app, db) {
   });
 
   // start payment process
-  app.post('/api/transaction/start' , (req, res) => {
+  app.get('/api/transaction/:adId' , (req, res) => { //TODO changed for testing
   	// create payment object
-    db.Ad.findOne({ _id: req.body.adId }, function (err, ad) {
+    db.Ad.findOne({ _id: req.params.adId }, function (err, ad) {
       if (err) {
         console.log(err);
         res.status(500).end();
