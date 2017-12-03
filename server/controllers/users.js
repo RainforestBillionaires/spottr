@@ -8,7 +8,7 @@ module.exports = function (app, db) {
     db.User.findOne({ email: req.body.email }, function(err, user){
       if (err)
         return console.log(err);
-      if (user == undefined) {
+      if (user === null) {
         bcrypt.hash(req.body.password, constants.SALT_ROUNDS, function(err, hash) {
           var query = new db.User({
               email: req.body.email,

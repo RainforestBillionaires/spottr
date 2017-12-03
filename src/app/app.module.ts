@@ -15,7 +15,11 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticateService } from './services/authenticate.service';
 import { AdsService } from './services/ads.service';
+<<<<<<< HEAD
 import { AddAdvertisementComponent } from './components/add-advertisement/add-advertisement.component';
+=======
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+>>>>>>> fecf78111222cd8a311e76eda8e837f873941f65
 
 
 @NgModule({
@@ -28,7 +32,11 @@ import { AddAdvertisementComponent } from './components/add-advertisement/add-ad
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+<<<<<<< HEAD
     AddAdvertisementComponent
+=======
+    SignUpComponent
+>>>>>>> fecf78111222cd8a311e76eda8e837f873941f65
   ],
   imports: [
     BrowserModule,

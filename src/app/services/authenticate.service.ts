@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
 
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -19,30 +18,53 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class AuthenticateService {
 
-  user: User;
-  login: Login;
-  loggedin: boolean;
+  loggedIn: boolean;
+  private headers = new Headers({
+    'Content-Type': 'application/json'
+  });
+  private req = new RequestOptions({
+    headers: this.headers
+  });
 
-  constructor( private http: Http ) { }
-
-  createUsers(email: string, fName: string, lName: string, phoneNum: number, address: string, password: string ): Observable<any> {
-    this.user = new User(email, fName, lName, phoneNum, address, password);
-    return this.http.post('localhost:3000/createUser',JSON.stringify({email, fName, lName, phoneNum, address, password}))
-      .map(this.extractData);
+  constructor( private http: Http ) {
+    this.loggedIn = false;
   }
 
-  signin(email: string, password: string): Observable<any> {
+  createUsers(email: string, fName: string, lName: string, address: string, password: string ): Observable<any> {
+    console.log(email)
+    let phoneNum = 2;
+    let body = JSON.stringify( {email, fName, lName, address, phoneNum, password});
+    console.log(body)
+    return this.http.post('http://localhost:3000/api/createUser',
+    JSON.stringify( {email, fName, lName, address, phoneNum, password}), this.req)
+      .map(this.handleResponse);
+  }
+
+  signIn(email: string, password: string): Observable<any> {
     this.login = new Login(email, password);
     console.log('called signIn');
     return this.http
-      .post('localhost:3000/api/signIn', JSON.stringify({email, password}))
-      .map(this.extractData);
+      .post('http://localhost:3000/api/signIn', { 'email': email, 'password': password}, this.req)
+      .map(this.handleResponse);
   }
 
-  private extractData(res: Response) {
-    console.log('extract data called');
-    let body = res.json();
-    return body || {};
+  private handleResponse(res: Response) {
+    console.log('handling response');
+    if(res.status === 200) {
+      this.loggedIn = true;
+      window.location.href = '/#'
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public getLoggedInStatus(): boolean {
+    return this.loggedIn;
+  }
+
+  logOut() {
+    this.loggedIn = false;
   }
 
 }
