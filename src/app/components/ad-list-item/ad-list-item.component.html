@@ -1,3 +1,12 @@
-<p>
-  ad-list-item works!
-</p>
+<div class="container-fluid listItem" (click)="clickedAd()">
+  <div class="thumb">
+      <img class="listItemThumb" src={{ad.pictures[0]}} alt={{ad.title}}>
+  </div>
+  <h4>{{ad.title}} | Collateral: {{ad.value}}</h4>
+  <div>
+    <span>{{ad.description | slice:0:155}}{{ad.description.length <= 155 ? '' : '...'}}</span>
+  </div>
+</div>
+<div>
+  <app-ad-details *ngIf="clicked" [ad]="ad"></app-ad-details>
+</div>
