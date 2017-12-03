@@ -5,11 +5,11 @@
         <img alt="Brand" src="../../../assets/SpottrLogo.png" height="45">
       </a>
     </div>
-    <div [hidden]="loggedIn">
+    <div [hidden]="authenticateService.getLoggedInStatus()">
       <a href="login" type="button" class="btn btn-default navbar-right" style="margin:10px">Login</a>
       <a href="signup" type="button" class="btn btn-default navbar-right" style="margin:10px">SignUp</a>
     </div>
-    <div [hidden]="!loggedIn">
+    <div [hidden]="!authenticateService.getLoggedInStatus()">
       <form class="navbar-form navbar-center" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
