@@ -18,6 +18,7 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class AuthenticateService {
 
+  login:any;
   loggedIn: boolean;
   private headers = new Headers({
     'Content-Type': 'application/json'

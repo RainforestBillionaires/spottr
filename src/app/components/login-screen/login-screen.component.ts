@@ -21,7 +21,7 @@ export class LoginScreenComponent implements OnInit {
 
   login(email: HTMLInputElement, password: HTMLInputElement): void {
     this.authenticateService.signIn(email.value, password.value)
-      .subscribe());
+      .subscribe();
   }
 
 
