@@ -68,8 +68,28 @@ module.exports = function (app, db) {
     });
   });
 
-  app.get('/api/ads/:searchText', function (req, res) {
+  app.get('/api/ads', function(req, res) {
+    console.log(`GET - Getting ALL ads`);
+    db.Ad.find({}, function (err, ads) {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.json(ads);
+      }
+    });
+  });
 
+  app.get('/api/ads/:searchText', function (req, res) {
+    console.log(`GET - Gettings ads with ${req.params.searchText} in the title`);
+    db.Ad.find({title: new RegExp(req.params.searchText)}, function(err, ads) {
+      if (err) {
+        console.log(err);
+        res.status(500).end();
+      } else {
+        res.json(ads);
+      }
+    });
   });
 
 }
